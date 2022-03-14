@@ -28,7 +28,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['baglocater-server.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['baglocater-server.herokuapp.com', '0.0.0.0']
 
 CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
