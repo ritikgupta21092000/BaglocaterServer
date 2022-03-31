@@ -15,6 +15,9 @@ import urllib
 import django_heroku
 import os
 
+os.environ["MONGODB_URI"] = "mongodb+srv://admin-ritik:admin-ritik@cluster0.ase9w.mongodb.net/baglocaterDB?retryWrites=true&w=majority"
+os.environ["SECRET_KEY"] = "django-insecure-a#t-ws+%v7)ipl4(%(u*-q6#jbxx5f1q0wp!y^wsxw&l49-1xv"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

@@ -1,9 +1,14 @@
+from operator import mod
+from pyexpat import model
 from django.db import models
 
 # Create your models here.
 class Credentials(models.Model):
+    id = models.CharField(max_length=30, primary_key=True)
     username = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
+    isAdmin = models.BooleanField(max_length=10)
+
 
 class AddLostAndFound(models.Model):
     name = models.CharField(max_length=30)

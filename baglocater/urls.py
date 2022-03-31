@@ -7,5 +7,8 @@ urlpatterns = [
     path('addLostAndFound', views.addLostAndFound, name='addLostAndFound'),
     path('retrievebag', views.retrievebag, name='retrievebag'),
     path('searchBags', views.searchBags, name='searchBags'),
-    path('verifydetails', views.verifydetails, name='verifydetails')
+    path('verifydetails', views.verifydetails, name='verifydetails'),
+    path('addUser', views.addUser, name='addUser'),
+    path('getUsers', views.getUsers, name='getUsers'),
+    path('deleteUser', views.deleteUser, name='deleteUser')
 ]

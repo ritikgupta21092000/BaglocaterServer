@@ -17,15 +17,48 @@ def index(request):
 @csrf_exempt
 def authenticate(request):
     if request.method == 'POST':
+        isAdmin = False
         received_json_data=json.loads(request.body)
         username = received_json_data['username']
         password = received_json_data['password']
         try:
-            cred = Credentials.objects.get(username=username, password=password)
+            cred = Credentials.objects.filter(username=username, password=password).values()[0]
+            isAdmin = cred["isAdmin"]
         except Credentials.DoesNotExist:
             return JsonResponse({'success': 'false'}, status=status.HTTP_404_NOT_FOUND)
 
-    return JsonResponse({"success": "true"})
+    return JsonResponse({"success": "true", "isAdmin": isAdmin})
+
+@csrf_exempt
+def addUser(request):
+    if request.method == 'POST':
+        received_json_data = json.loads(request.body)
+        username = received_json_data["username"]
+        password = received_json_data["password"]
+        try:
+            add = Credentials.objects.create(username=username, password=password, isAdmin=False)
+        except:
+            return JsonResponse({'addUser': 'failed'})
+        return JsonResponse({"addUser": "success"})
+
+@csrf_exempt
+def getUsers(request):
+    if request.method == "GET":
+        allUsers = Credentials.objects.all()
+        users = []
+        for i in range(len(allUsers)):
+            users.append(allUsers[i].username)
+        print(users)
+        return JsonResponse({"users": users})
+
+@csrf_exempt
+def deleteUser(request):
+    if request.method == "POST":
+        received_json_data = json.loads(request.body)
+        username = received_json_data['username']
+        cred = Credentials.objects.get(username=username)
+        cred.delete()
+        return JsonResponse({"status": 'success'})
 
 @csrf_exempt
 def addLostAndFound(request):
